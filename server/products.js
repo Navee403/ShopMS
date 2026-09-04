@@ -9,10 +9,11 @@ router.get("/",async(req,res)=>{
     try{
     const products=await product.find();
     res.json(products);
-    }catch(error){
+    }catch (error) {
+        console.error("GET PRODUCTS ERROR:", error);
         res.status(500).send("error");
     }
-})
+});
 
 //Read
 router.post("/", async(req,res)=>{
