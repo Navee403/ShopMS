@@ -6,13 +6,13 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors({
-  origin: 'http://localhost:5173'
-}));
+app.use(cors());
 
 app.use('/',express.static("public"));
 app.use('/products',route);
 
-app.listen(3000,function(){
-    console.log("App is Started");
-})
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, '0.0.0.0', function(){
+    console.log(`App is Started on port ${PORT}`);
+});

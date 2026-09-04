@@ -3,6 +3,7 @@ import ProductList from "../Productlist";
 import AddProduct from "../AddProduct";
 import DeleteProduct from "../DeleteProduct";
 import EditProduct from "../EditProduct";
+import API_URL from "../api";
 
 function About() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ function About() {
   }, []);
 
   async function fetchProducts() {
-    const response = await fetch("http://localhost:3000/products");
+    const response = await fetch(`${API_URL}/products`);
     if (!response.ok) {
       console.log("error");
       return;

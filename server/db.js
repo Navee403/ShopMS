@@ -1,16 +1,22 @@
+import 'dotenv/config';
 import mongoose from 'mongoose';
-const url='mongodb://localhost/shopdb';
-mongoose.connect(url);
 
-const db=mongoose.Connection; //this is reference ,using db we call methods like insertone,insertMany
+const url = process.env.MONGODB_URI;
 
-//creating a schema [creating fields for shop]
-const productschema=new mongoose.Schema({
-    name:String,
-    description:String,
-    price:Number,
+if (!url) {
+    throw new Error('MONGODB_URI is not set');
+}
+
+mongoose.connect(url)
+    .then(() => console.log('MongoDB connected successfully'))
+    .catch((err) => console.error('MongoDB connection error:', err));
+
+const productschema = new mongoose.Schema({
+    name: String,
+    description: String,
+    price: Number,
 });
 
-//creating a model
-const product=mongoose.model('product',productschema);
+const product = mongoose.model('product', productschema);
+
 export default product;

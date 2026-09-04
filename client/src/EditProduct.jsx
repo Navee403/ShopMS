@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import API_URL from './api';
 
 const EditProduct = ({ products, fetchProducts }) => {
   const [editingId, setEditingId] = useState(null);
@@ -16,7 +17,7 @@ const EditProduct = ({ products, fetchProducts }) => {
 
   const saveChanges = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${editingId}`, {
+      const response = await fetch(`${API_URL}/products/${editingId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...editedProduct, price: parseFloat(editedProduct.price) }),

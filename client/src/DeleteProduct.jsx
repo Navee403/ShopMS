@@ -1,9 +1,10 @@
 import React from "react";
+import API_URL from './api';
 
 const DeleteProduct = ({ products, fetchProducts }) => {
   const deleteProduct = async (_id) => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${_id}`, { method: "DELETE" });
+      const response = await fetch(`${API_URL}/products/${_id}`, { method: "DELETE" });
       if (!response.ok) { console.error("Failed to delete product"); return; }
       fetchProducts();
     } catch (err) { console.error("Network error:", err); }
